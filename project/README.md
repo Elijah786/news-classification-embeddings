@@ -18,20 +18,6 @@ Instead of random augmentation, this project:
 - Augments training data specifically for those classes
 - Retrains model and compares improvement
 
-## Results
-
-| Model | Accuracy |
-|------|--------|
-| MiniLM (baseline) | XX% |
-| MiniLM (augmented) | XX% |
-| Paraphrase MiniLM (baseline) | XX% |
-| Paraphrase MiniLM (augmented) | XX% |
-
-## Example Output
-Confusion matrix (row-normalized):
-
-![Confusion Matrix](results/confusion_matrix_test_normalized.png)
-
 ## Technologies Used
 - Python
 - PyTorch
