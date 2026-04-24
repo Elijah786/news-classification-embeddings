@@ -1,111 +1,80 @@
-# 📰 News Classification with Transformer Embeddings
+News Classification with Transformer Embeddings
+Overview
 
-## 📌 Overview
+This project implements an end-to-end machine learning pipeline for classifying news articles into four categories:
 
-This project builds an end-to-end machine learning pipeline for classifying news articles into categories:
+World
+Sports
+Business
+Sci/Tech
 
-* World
-* Sports
-* Business
-* Sci/Tech
+The approach leverages pretrained transformer-based sentence embeddings combined with a lightweight linear classifier to achieve efficient and scalable text classification.
 
-It leverages transformer-based sentence embeddings combined with a lightweight linear classifier for efficient predictions.
+Motivation
 
----
+Training full transformer models from scratch can be computationally expensive. This project explores a more efficient alternative:
 
-## 🚀 Key Idea
+Use high-quality pretrained embeddings with a simple classifier to significantly reduce training time while maintaining strong predictive performance.
 
-Instead of training a heavy deep learning model, this project uses **pretrained embeddings + linear classification**, reducing computational cost while maintaining strong performance.
+Methodology
+1. Data Preprocessing
+Combined article title and description into a single input
+Performed basic text cleaning and formatting
+2. Feature Representation
 
----
+Generated dense vector representations using pretrained models:
 
-## 🧠 Approach
+all-MiniLM-L6-v2
+paraphrase-MiniLM-L6-v2
 
-### 1. Data Processing
+These embeddings capture semantic meaning without requiring task-specific training.
 
-* Combined article **title + description**
-* Cleaned and formatted text input
+3. Model Architecture
+Implemented a linear classifier in PyTorch
+Trained on fixed embeddings for fast convergence and low computational cost
+4. Evaluation
+Assessed performance using standard classification metrics (e.g., accuracy, precision, recall, F1-score)
+Compared results across embedding models and training setups
+Key Contribution: Targeted Data Augmentation
 
-### 2. Embeddings
+A central contribution of this project is a targeted augmentation strategy designed to improve model performance efficiently:
 
-Generated sentence embeddings using:
+Analyze class-wise performance
+Identify underperforming categories
+Apply augmentation selectively to those classes
+Retrain and evaluate improvements
 
-* `all-MiniLM-L6-v2`
-* `paraphrase-MiniLM-L6-v2`
+This approach avoids unnecessary data expansion and focuses effort where it yields the greatest benefit.
 
-### 3. Model
-
-* Linear classifier implemented in **PyTorch**
-
-### 4. Evaluation
-
-* Model evaluated using standard classification techniques to assess prediction quality
-
----
-
-## 🔥 Key Feature: Targeted Data Augmentation
-
-Instead of random augmentation, this project:
-
-1. Identifies weaker-performing classes
-2. Selects underperforming categories
-3. Applies **targeted augmentation only where needed**
-4. Retrains and compares improvements
-
-This makes augmentation more efficient and impactful.
-
----
-
-## 🛠️ Tech Stack
-
-* Python
-* PyTorch
-* SentenceTransformers
-* scikit-learn
-* pandas
-
----
-
-## 📂 Project Structure
-
-```
+Tech Stack
+Python
+PyTorch
+SentenceTransformers
+scikit-learn
+pandas
+Project Structure
 project/
 │
-├── data/
+├── data/              # Dataset (or sample subset)
 ├── src/
-│   └── model.py
-├── results/
+│   └── model.py       # Training and evaluation pipeline
+├── results/           # Metrics, visualizations
 ├── README.md
 ├── requirements.txt
-```
-
----
-
-## ▶️ How to Run
-
-```bash
-# Clone repo
+Getting Started
+# Clone the repository
 git clone https://github.com/Elijah786/news-classification-embeddings.git
 cd news-classification-embeddings
 
 # Install dependencies
 pip install -r requirements.txt
 
-# Run model
+# Run the model
 python src/model.py
-```
-
----
-
-## 💡 Future Improvements
-
-* Try fine-tuning transformer models (e.g. BERT)
-* Add hyperparameter tuning
-* Deploy as a web app (Flask / FastAPI)
-* Expand dataset for better generalization
-
----
-
-## 👤 Author
+Future Work
+Fine-tune transformer models (e.g., BERT) for improved accuracy
+Perform systematic hyperparameter tuning
+Expand dataset to improve generalization
+Author
 
 Elijah Ford
