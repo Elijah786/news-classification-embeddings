@@ -1,85 +1,111 @@
-News Classification with Transformer Embeddings
-Overview
+# 📰 News Classification with Transformer Embeddings
 
-This project implements an end-to-end machine learning pipeline for classifying news articles into four categories:
+## 📌 Overview
 
-World
-Sports
-Business
-Sci/Tech
+This project builds an end-to-end machine learning pipeline for classifying news articles into categories:
 
-It combines pretrained transformer-based sentence embeddings with a lightweight linear classifier to achieve efficient and scalable text classification.
+* World
+* Sports
+* Business
+* Sci/Tech
 
-Motivation
+It leverages transformer-based sentence embeddings combined with a lightweight linear classifier for efficient predictions.
 
-Training full transformer models can be computationally expensive and time-intensive. This project explores an alternative approach that maintains strong performance while significantly reducing training cost:
+---
 
-Use pretrained embeddings to capture semantic meaning
-Train a simple classifier on top of those embeddings
+## 🚀 Key Idea
 
-This results in faster training and easier experimentation without sacrificing effectiveness.
+Instead of training a heavy deep learning model, this project uses **pretrained embeddings + linear classification**, reducing computational cost while maintaining strong performance.
 
-Methodology
-Data Preprocessing
-Combined article title and description into a single input
-Performed basic text cleaning and formatting
-Feature Representation
+---
 
-Text is converted into dense vector representations using pretrained models:
+## 🧠 Approach
 
-all-MiniLM-L6-v2
-paraphrase-MiniLM-L6-v2
+### 1. Data Processing
 
-These embeddings capture contextual and semantic relationships between words.
+* Combined article **title + description**
+* Cleaned and formatted text input
 
-Model
-Linear classifier implemented in PyTorch
-Trained on fixed embeddings for fast convergence
-Evaluation
-Evaluated using standard classification metrics:
-Accuracy
-Precision
-Recall
-F1-score
-Compared performance across embedding models and training configurations
-Targeted Data Augmentation
+### 2. Embeddings
 
-This project introduces a targeted approach to data augmentation:
+Generated sentence embeddings using:
 
-Evaluate model performance by class
-Identify underperforming categories
-Apply augmentation selectively to those classes
-Retrain and measure improvement
+* `all-MiniLM-L6-v2`
+* `paraphrase-MiniLM-L6-v2`
 
-This method improves efficiency by focusing only on areas that need improvement, rather than applying augmentation uniformly.
+### 3. Model
 
-Tech Stack
-Python
-PyTorch
-SentenceTransformers
-scikit-learn
-pandas
-Project Structure
+* Linear classifier implemented in **PyTorch**
+
+### 4. Evaluation
+
+* Model evaluated using standard classification metrics
+
+---
+
+## 🔥 Key Feature: Targeted Data Augmentation
+
+Instead of random augmentation, this project:
+
+1. Identifies weakest-performing classes
+2. Selects underperforming categories
+3. Applies **targeted augmentation only where needed**
+4. Retrains and compares improvement
+
+This makes augmentation more efficient and impactful.
+
+---
+
+## 🛠️ Tech Stack
+
+* Python
+* PyTorch
+* SentenceTransformers
+* scikit-learn
+* pandas
+
+---
+
+## 📂 Project Structure
+
+```
 project/
 │
-├── data/              # Dataset (or sample subset)
+├── data/
 ├── src/
-│   └── model.py       # Training and evaluation pipeline
-├── results/           # Metrics and visualizations
+│   └── model.py
+├── results/
 ├── README.md
 ├── requirements.txt
-Getting Started
-1. Clone the repository
+```
+
+---
+
+## ▶️ How to Run
+
+```bash
+# Clone repo
 git clone https://github.com/Elijah786/news-classification-embeddings.git
 cd news-classification-embeddings
-2. Install dependencies
+
+# Install dependencies
 pip install -r requirements.txt
-3. Run the model
+
+# Run model
 python src/model.py
-Future Work
-Fine-tune transformer models (e.g., BERT)
-Perform hyperparameter optimization
-Expand dataset to improve generalization
-Author
+```
+
+---
+
+## 💡 Future Improvements
+
+* Try fine-tuning transformer models (e.g. BERT)
+* Add hyperparameter tuning
+* Deploy as a web app (Flask / FastAPI)
+* Expand dataset for better generalization
+
+---
+
+## 👤 Author
 
 Elijah Ford
