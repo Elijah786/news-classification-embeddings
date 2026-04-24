@@ -8,43 +8,50 @@ Sports
 Business
 Sci/Tech
 
-The approach leverages pretrained transformer-based sentence embeddings combined with a lightweight linear classifier to achieve efficient and scalable text classification.
+It combines pretrained transformer-based sentence embeddings with a lightweight linear classifier to achieve efficient and scalable text classification.
 
 Motivation
 
-Training full transformer models from scratch can be computationally expensive. This project explores a more efficient alternative:
+Training full transformer models can be computationally expensive and time-intensive. This project explores an alternative approach that maintains strong performance while significantly reducing training cost:
 
-Use high-quality pretrained embeddings with a simple classifier to significantly reduce training time while maintaining strong predictive performance.
+Use pretrained embeddings to capture semantic meaning
+Train a simple classifier on top of those embeddings
+
+This results in faster training and easier experimentation without sacrificing effectiveness.
 
 Methodology
-1. Data Preprocessing
+Data Preprocessing
 Combined article title and description into a single input
 Performed basic text cleaning and formatting
-2. Feature Representation
+Feature Representation
 
-Generated dense vector representations using pretrained models:
+Text is converted into dense vector representations using pretrained models:
 
 all-MiniLM-L6-v2
 paraphrase-MiniLM-L6-v2
 
-These embeddings capture semantic meaning without requiring task-specific training.
+These embeddings capture contextual and semantic relationships between words.
 
-3. Model Architecture
-Implemented a linear classifier in PyTorch
-Trained on fixed embeddings for fast convergence and low computational cost
-4. Evaluation
-Assessed performance using standard classification metrics (e.g., accuracy, precision, recall, F1-score)
-Compared results across embedding models and training setups
-Key Contribution: Targeted Data Augmentation
+Model
+Linear classifier implemented in PyTorch
+Trained on fixed embeddings for fast convergence
+Evaluation
+Evaluated using standard classification metrics:
+Accuracy
+Precision
+Recall
+F1-score
+Compared performance across embedding models and training configurations
+Targeted Data Augmentation
 
-A central contribution of this project is a targeted augmentation strategy designed to improve model performance efficiently:
+This project introduces a targeted approach to data augmentation:
 
-Analyze class-wise performance
+Evaluate model performance by class
 Identify underperforming categories
 Apply augmentation selectively to those classes
-Retrain and evaluate improvements
+Retrain and measure improvement
 
-This approach avoids unnecessary data expansion and focuses effort where it yields the greatest benefit.
+This method improves efficiency by focusing only on areas that need improvement, rather than applying augmentation uniformly.
 
 Tech Stack
 Python
@@ -58,22 +65,20 @@ project/
 ├── data/              # Dataset (or sample subset)
 ├── src/
 │   └── model.py       # Training and evaluation pipeline
-├── results/           # Metrics, visualizations
+├── results/           # Metrics and visualizations
 ├── README.md
 ├── requirements.txt
 Getting Started
-# Clone the repository
+1. Clone the repository
 git clone https://github.com/Elijah786/news-classification-embeddings.git
 cd news-classification-embeddings
-
-# Install dependencies
+2. Install dependencies
 pip install -r requirements.txt
-
-# Run the model
+3. Run the model
 python src/model.py
 Future Work
-Fine-tune transformer models (e.g., BERT) for improved accuracy
-Perform systematic hyperparameter tuning
+Fine-tune transformer models (e.g., BERT)
+Perform hyperparameter optimization
 Expand dataset to improve generalization
 Author
 
